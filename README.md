@@ -1,5 +1,7 @@
 # Yo Node WebApp Project Generator
 
+[![Build Status](https://github.com/vcgtz/generator-node-webapp/actions/workflows/node.js.yml/badge.svg)](https://github.com/vcgtz/generator-node-webapp/actions)
+
 This generator will help you to create a project to start developingp your own web app using TypeScript, ExpressJS, Jest, Handlebars, and TailwindCSS.
 
 ## Install the Generator
