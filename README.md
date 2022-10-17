@@ -1,6 +1,6 @@
 # Yo Node WebApp Project Generator
 
-This generator will help you to create a project to start developingp your own web app using TypeScript, ExpressJS, Jest, Handlebars, TailwindCSS, and Mongoose.
+This generator will help you to create a project to start developingp your own web app using TypeScript, ExpressJS, Jest, Handlebars, and TailwindCSS.
 
 ## Install the Generator
 
