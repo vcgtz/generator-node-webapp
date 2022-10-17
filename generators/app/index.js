@@ -39,7 +39,9 @@ module.exports = class extends Generator {
       .replace(/\s/g, '-')
       .toLowerCase();
     const folderPath = path.resolve(this.destinationPath(), folderName);
+
     this.destinationRoot(folderPath);
+    this.env.cwd = this.destinationPath();
 
     this._setConfigFiles();
     this._setProjectFiles();
@@ -63,7 +65,7 @@ module.exports = class extends Generator {
 
   _setConfigFiles() {
     this.fs.copyTpl(
-      this.templatePath('js/package.json'),
+      this.templatePath('package.json'),
       this.destinationPath('package.json'),
       {
         projectName: this.answers.projectName,
@@ -87,8 +89,8 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath('post.config.js'),
-      this.destinationPath('post.config.js')
+      this.templatePath('postcss.config.js'),
+      this.destinationPath('postcss.config.js')
     );
 
     this.fs.copyTpl(
