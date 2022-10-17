@@ -4,7 +4,10 @@
   "description": "Generator for a webapp using NodeJS, ExpressJS, TailwindCSS, Handlebars, and Mongoose",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write 'generators/app/*.js'",
+    "format:check": "prettier --check 'generators/app/*.js'",
+    "lint": "eslint 'generators/app/*.js'",
+    "test": "jest ./tests --modulePathIgnorePatterns='./generators/app/templates'"
   },
   "repository": {
     "type": "git",
