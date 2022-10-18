@@ -8,6 +8,7 @@ describe('Testing project generation', () => {
       .withPrompts({
         projectName: 'myproject',
         projectDescription: 'My JS project description',
+        db: 'mongo',
         gitInit: false,
       })
       .then(() => {
