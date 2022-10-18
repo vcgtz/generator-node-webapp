@@ -1,6 +1,6 @@
 {
   "name": "generator-node-webapp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generator for a webapp using NodeJS, ExpressJS, TailwindCSS, Handlebars, and Mongoose",
   "main": "index.js",
   "scripts": {
