@@ -26,6 +26,21 @@ module.exports = class extends Generator {
         default: '',
       },
       {
+        type: 'list',
+        name: 'db',
+        message: 'Which database do you want to use?',
+        choices: [
+          {
+            name: 'MongoDB (Mongoose)',
+            value: 'mongo',
+          },
+          {
+            name: 'None',
+            value: 'none',
+          },
+        ],
+      },
+      {
         type: 'confirm',
         name: 'gitInit',
         message: 'Initialize a git repository?',
@@ -64,14 +79,32 @@ module.exports = class extends Generator {
   }
 
   _setConfigFiles() {
-    this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath('package.json'),
-      {
-        projectName: this.answers.projectName,
-        projectDescription: this.answers.projectDescription,
-      }
-    );
+    if (this.answers.db === 'mongo') {
+      this.fs.copyTpl(
+        this.templatePath('mongoose/package.json'),
+        this.destinationPath('package.json'),
+        {
+          projectName: this.answers.projectName,
+          projectDescription: this.answers.projectDescription,
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('mongoose/env'),
+        this.destinationPath('.env')
+      );
+    } else {
+      this.fs.copyTpl(
+        this.templatePath('package.json'),
+        this.destinationPath('package.json'),
+        {
+          projectName: this.answers.projectName,
+          projectDescription: this.answers.projectDescription,
+        }
+      );
+
+      this.fs.copyTpl(this.templatePath('env'), this.destinationPath('.env'));
+    }
 
     this.fs.copyTpl(
       this.templatePath('eslintignore'),
@@ -110,10 +143,27 @@ module.exports = class extends Generator {
   }
 
   _setProjectFiles() {
-    this.fs.copyTpl(
-      this.templatePath('index.ts'),
-      this.destinationPath('index.ts')
-    );
+    if (this.answers.db === 'mongo') {
+      this.fs.copyTpl(
+        this.templatePath('mongoose/index.ts'),
+        this.destinationPath('index.ts')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('mongoose/config/Mongoose.ts'),
+        this.destinationPath('src/config/Mongoose.ts')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('mongoose/models/User.ts'),
+        this.destinationPath('src/models/User.ts')
+      );
+    } else {
+      this.fs.copyTpl(
+        this.templatePath('index.ts'),
+        this.destinationPath('index.ts')
+      );
+    }
 
     this.fs.copyTpl(
       this.templatePath('controllers/Controller.ts'),
