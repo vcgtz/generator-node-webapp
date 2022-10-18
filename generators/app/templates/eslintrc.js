@@ -6,9 +6,9 @@ module.exports = {
     node: true,
   },
   extends: [
-    'prettier',
     'standard-with-typescript',
     'plugin:@typescript-eslint/recommended',
+    'prettier',
   ],
   overrides: [
   ],
